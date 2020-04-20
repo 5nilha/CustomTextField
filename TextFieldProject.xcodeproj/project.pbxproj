@@ -16,6 +16,16 @@
 		3E2902D5244A263C00EF3654 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E2902D3244A263C00EF3654 /* LaunchScreen.storyboard */; };
 		3E2902E0244A263C00EF3654 /* TextFieldProjectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E2902DF244A263C00EF3654 /* TextFieldProjectTests.swift */; };
 		3E2902EB244A263D00EF3654 /* TextFieldProjectUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E2902EA244A263D00EF3654 /* TextFieldProjectUITests.swift */; };
+		3E2902FA244B7C6A00EF3654 /* CustomInputTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E2902F9244B7C6A00EF3654 /* CustomInputTextField.swift */; };
+		3E2902FC244B985400EF3654 /* TextFieldType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E2902FB244B985400EF3654 /* TextFieldType.swift */; };
+		3E2902FE244B9C5D00EF3654 /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E2902FD244B9C5D00EF3654 /* Currency.swift */; };
+		3E290300244B9CE900EF3654 /* Percentage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E2902FF244B9CE900EF3654 /* Percentage.swift */; };
+		3E290302244B9D3200EF3654 /* Email.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E290301244B9D3200EF3654 /* Email.swift */; };
+		3E290304244B9D7400EF3654 /* Password.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E290303244B9D7400EF3654 /* Password.swift */; };
+		3E290308244B9FAC00EF3654 /* Currencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E290307244B9FAC00EF3654 /* Currencies.swift */; };
+		3E29030A244C186000EF3654 /* CurrenciesProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E290309244C186000EF3654 /* CurrenciesProtocol.swift */; };
+		3E29030C244C500A00EF3654 /* CustomNumberFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E29030B244C500A00EF3654 /* CustomNumberFormatter.swift */; };
+		3E9355E7244D4F8700F70D93 /* usdCurrencyTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E9355E6244D4F8700F70D93 /* usdCurrencyTest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +61,16 @@
 		3E2902E6244A263D00EF3654 /* TextFieldProjectUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TextFieldProjectUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3E2902EA244A263D00EF3654 /* TextFieldProjectUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldProjectUITests.swift; sourceTree = "<group>"; };
 		3E2902EC244A263D00EF3654 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3E2902F9244B7C6A00EF3654 /* CustomInputTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomInputTextField.swift; sourceTree = "<group>"; };
+		3E2902FB244B985400EF3654 /* TextFieldType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldType.swift; sourceTree = "<group>"; };
+		3E2902FD244B9C5D00EF3654 /* Currency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Currency.swift; sourceTree = "<group>"; };
+		3E2902FF244B9CE900EF3654 /* Percentage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Percentage.swift; sourceTree = "<group>"; };
+		3E290301244B9D3200EF3654 /* Email.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Email.swift; sourceTree = "<group>"; };
+		3E290303244B9D7400EF3654 /* Password.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Password.swift; sourceTree = "<group>"; };
+		3E290307244B9FAC00EF3654 /* Currencies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Currencies.swift; sourceTree = "<group>"; };
+		3E290309244C186000EF3654 /* CurrenciesProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrenciesProtocol.swift; sourceTree = "<group>"; };
+		3E29030B244C500A00EF3654 /* CustomNumberFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNumberFormatter.swift; sourceTree = "<group>"; };
+		3E9355E6244D4F8700F70D93 /* usdCurrencyTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = usdCurrencyTest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +121,7 @@
 		3E2902C4244A263800EF3654 /* TextFieldProject */ = {
 			isa = PBXGroup;
 			children = (
+				3E2902F8244B7C3A00EF3654 /* TextField */,
 				3E2902C5244A263800EF3654 /* AppDelegate.swift */,
 				3E2902C7244A263800EF3654 /* SceneDelegate.swift */,
 				3E2902C9244A263900EF3654 /* ViewController.swift */,
@@ -116,6 +137,7 @@
 		3E2902DE244A263C00EF3654 /* TextFieldProjectTests */ = {
 			isa = PBXGroup;
 			children = (
+				3E9355E5244D4F4900F70D93 /* CurrencyTests */,
 				3E2902DF244A263C00EF3654 /* TextFieldProjectTests.swift */,
 				3E2902E1244A263C00EF3654 /* Info.plist */,
 			);
@@ -129,6 +151,30 @@
 				3E2902EC244A263D00EF3654 /* Info.plist */,
 			);
 			path = TextFieldProjectUITests;
+			sourceTree = "<group>";
+		};
+		3E2902F8244B7C3A00EF3654 /* TextField */ = {
+			isa = PBXGroup;
+			children = (
+				3E2902F9244B7C6A00EF3654 /* CustomInputTextField.swift */,
+				3E2902FB244B985400EF3654 /* TextFieldType.swift */,
+				3E2902FD244B9C5D00EF3654 /* Currency.swift */,
+				3E2902FF244B9CE900EF3654 /* Percentage.swift */,
+				3E290301244B9D3200EF3654 /* Email.swift */,
+				3E290303244B9D7400EF3654 /* Password.swift */,
+				3E290307244B9FAC00EF3654 /* Currencies.swift */,
+				3E290309244C186000EF3654 /* CurrenciesProtocol.swift */,
+				3E29030B244C500A00EF3654 /* CustomNumberFormatter.swift */,
+			);
+			path = TextField;
+			sourceTree = "<group>";
+		};
+		3E9355E5244D4F4900F70D93 /* CurrencyTests */ = {
+			isa = PBXGroup;
+			children = (
+				3E9355E6244D4F8700F70D93 /* usdCurrencyTest.swift */,
+			);
+			path = CurrencyTests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -262,9 +308,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3E29030A244C186000EF3654 /* CurrenciesProtocol.swift in Sources */,
 				3E2902CA244A263900EF3654 /* ViewController.swift in Sources */,
+				3E29030C244C500A00EF3654 /* CustomNumberFormatter.swift in Sources */,
+				3E290300244B9CE900EF3654 /* Percentage.swift in Sources */,
+				3E2902FC244B985400EF3654 /* TextFieldType.swift in Sources */,
 				3E2902D0244A263900EF3654 /* TextFieldProject.xcdatamodeld in Sources */,
 				3E2902C6244A263800EF3654 /* AppDelegate.swift in Sources */,
+				3E290308244B9FAC00EF3654 /* Currencies.swift in Sources */,
+				3E290302244B9D3200EF3654 /* Email.swift in Sources */,
+				3E2902FA244B7C6A00EF3654 /* CustomInputTextField.swift in Sources */,
+				3E2902FE244B9C5D00EF3654 /* Currency.swift in Sources */,
+				3E290304244B9D7400EF3654 /* Password.swift in Sources */,
 				3E2902C8244A263800EF3654 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -274,6 +329,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3E2902E0244A263C00EF3654 /* TextFieldProjectTests.swift in Sources */,
+				3E9355E7244D4F8700F70D93 /* usdCurrencyTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

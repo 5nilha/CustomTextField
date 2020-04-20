@@ -7,6 +7,7 @@
 //
 
 import XCTest
+@testable import TextFieldProject
 
 class usdCurrencyTest: XCTestCase {
 
@@ -18,16 +19,45 @@ class usdCurrencyTest: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    func testDecoratorForUSD() {
+        let decorator = CustomInputTextFieldDecorator(type: .currency(.USD(.en)))
+        let valueDecorated = try? decorator.decorate(valueString: "1003.2998")
+        XCTAssertEqual(valueDecorated, "$1,003.30")
+    }
+    
+    func testDecoratorForUSDSpanish() {
+        let decorator = CustomInputTextFieldDecorator(type: .currency(.USD(.es)))
+        let valueDecorated = try? decorator.decorate(valueString: "1003.2998")
+        XCTAssertEqual(valueDecorated, "$1003.30")
+    }
+    
+    func testDecoratorForBRL() {
+        let decorator = CustomInputTextFieldDecorator(type: .currency(.BRL(.pt)))
+        let valueDecorated = try? decorator.decorate(valueString: "1003.2998")
+        XCTAssertEqual(valueDecorated, "R$ 1.003,30")
+    }
+    
+    func testDecoratorForGBP() {
+        let decorator = CustomInputTextFieldDecorator(type: .currency(.GBP(.en)))
+        let valueDecorated = try? decorator.decorate(valueString: "1003.2998")
+        XCTAssertEqual(valueDecorated, "£1,003.30")
+    }
+    
+    func testDecoratorForEuroFrench() {
+        let decorator = CustomInputTextFieldDecorator(type: .currency(.EUR(.fr)))
+        let valueDecorated = try? decorator.decorate(valueString: "1003.2998")
+        XCTAssertEqual(valueDecorated, "1 003,30 €")
     }
 
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
+    func testDecoratorForEuroEnglish() {
+        let decorator = CustomInputTextFieldDecorator(type: .currency(.EUR(.en)))
+        let valueDecorated = try? decorator.decorate(valueString: "1003.2998")
+        XCTAssertEqual(valueDecorated, "€1 003,30")
     }
-
+    
+    func testDecoratorForLocal() {
+        let decorator = CustomInputTextFieldDecorator(type: .currency(.Localized))
+        let valueDecorated = try? decorator.decorate(valueString: "1003.2998")
+        XCTAssertEqual(valueDecorated, "$1,003.30")
+    }
 }
