@@ -5,57 +5,50 @@ import Foundation
 
 
 
-struct Currency: TextFieldTypeProtocol {
+struct Currency {
     
     static var amount: Int64 = 0
     static let maxValue = 20
     private var currencyType: Currencies!
     private var stringInput: String!
-    private var value: Double?
+    public private (set) var value: Double?
     
     init(type: Currencies) {
         self.currencyType = type
     }
     
     mutating func decorate(digitChar: String?) throws -> String {
-        if let char = digitChar, let digit = Int64(char) {
-            Currency.amount = (Currency.amount * 10) + digit
-        }
-            
-        if digitChar == "" {
-            Currency.amount = Currency.amount / 10
-        }
+        guard let char = digitChar else { throw CustomEntryError.invalidInput }
         
-        guard let value = getNumeralValue(amount: Currency.amount, currencyType: currencyType) else {
-            throw TextFieldEntryError.invalidInput
+        if char.count <= 1 {
+            var valueAmount: Int64 = 0
+            if let digit = Int64(char) {
+                Currency.amount = (Currency.amount * 10) + digit
+            }
+               
+            if digitChar == "" {
+                Currency.amount = Currency.amount / 10
+            }
+            valueAmount = Currency.amount
+            guard let value = try getNumeralValue(amount: valueAmount, currencyType: currencyType) else {
+                throw CustomEntryError.invalidInput
+            }
+            self.value = value
+            return self.currencyType.format(value: value)
+        } else {
+            var valueAmount: Double = 0
+            guard let digits = Double(char) else { return char }
+            valueAmount = digits
+            guard let value = try getNumeralValue(amount: valueAmount, currencyType: currencyType) else {
+                throw CustomEntryError.invalidInput
+            }
+            self.value = value
+            return self.currencyType.format(value: value)
         }
-        self.value = value
-        return self.currencyType.format(value: value)
     }
     
-    private func getNumeralValue(amount: Int64, currencyType: Currencies) -> Double? {
-       return CustomNumberFormatter.currency(value: amount).formattedValue
-    }
-       
-    private func getNumeralValue(text: String, currencyType: Currencies) -> Double? {
-        guard let string = stringByRemovingCharacters(text),
-            let numeral = Int64(string) else {
-            return nil
-        }
-        
-        return CustomNumberFormatter.currency(value: numeral).formattedValue
-    }
-    
-    private func stringByRemovingCharacters(_ string: String) -> String? {
-       let pattern = "[^0-9.]"
-       do {
-           let regex = try NSRegularExpression(pattern: pattern, options: NSRegularExpression.Options.caseInsensitive)
-           
-           let numberString = regex.stringByReplacingMatches(in: string, options: NSRegularExpression.MatchingOptions.withTransparentBounds, range: NSMakeRange(0, string.count), withTemplate: "")
-           return numberString
-       } catch {
-           return nil
-       }
+    private func getNumeralValue<T>(amount: T, currencyType: Currencies) throws -> Double? {
+       return try CustomNumberFormatter.currency(value: amount).formattedValue()
     }
 }
  

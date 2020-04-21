@@ -3,8 +3,8 @@
 
 import Foundation
 
-enum CustomNumberFormatter {
-    case currency(value: Int64)
+enum CustomNumberFormatter<T> {
+    case currency(value: T)
     case percentage(value: Double)
     case decimalPercentage(value: Double)
     case decimal(value: Double)
@@ -33,29 +33,61 @@ enum CustomNumberFormatter {
             }
         }
         
-        func format(value: Int64) -> Double {
-            let amount = Double(value / 100) + Double(value % 100) / 100
-            return amount
+        func format<T>(value: T) throws -> Double {
+            if value is Double, let valueAmount = value as? Double {
+                return self.formatDouble(value: valueAmount)
+            } else if value is Int64, let valueAmount = value as? Int64  {
+                return formatInt(value: valueAmount)
+            } else if value is String, let stringAmount = value as? String {
+                guard let string = stringByRemovingCharacters(stringAmount) else { throw CustomEntryError.invalidInput }
+                if let valueAmount = Int64(string) {
+                    return formatInt(value: valueAmount)
+                } else if let valueAmount = Double(string) {
+                    return self.formatDouble(value: valueAmount)
+                } else {
+                    throw CustomEntryError.invalidInput
+                }
+            } else {
+                throw CustomEntryError.invalidInput
+            }
         }
         
-        func format(value: Double) -> Double {
+        private func formatDouble(value: Double) -> Double {
             let digits = pow(10, Double(self.numberOfDigits))
             return Double(round(digits * value) / digits)
         }
+        
+        private func formatInt(value: Int64) -> Double {
+            return Double(value / 100) + Double(value % 100) / 100
+        }
+        
+        private func stringByRemovingCharacters(_ string: String) -> String? {
+           let pattern = "[^0-9.]"
+           do {
+               let regex = try NSRegularExpression(pattern: pattern, options: NSRegularExpression.Options.caseInsensitive)
+               
+               let numberString = regex.stringByReplacingMatches(in: string, options: NSRegularExpression.MatchingOptions.withTransparentBounds, range: NSMakeRange(0, string.count), withTemplate: "")
+               return numberString
+           } catch {
+               return nil
+           }
+        }
+        
     }
+
     
-    var formattedValue : Double {
+    func formattedValue() throws -> Double {
         switch self {
         case .currency(let value):
-             return NumberOfDecimals.twoDigits.format(value: value)
+            return try NumberOfDecimals.twoDigits.format(value: value)
         case .decimal(let value):
-            return NumberOfDecimals.twoDigits.format(value: value)
+            return try NumberOfDecimals.twoDigits.format(value: value)
         case .percentage(let value):
-            return NumberOfDecimals.zerodigits.format(value: value)
+            return try NumberOfDecimals.zerodigits.format(value: value)
         case .decimalPercentage(let value):
-            return NumberOfDecimals.oneDigit.format(value: value)
+            return try NumberOfDecimals.oneDigit.format(value: value)
         case .scientific(let value):
-            return NumberOfDecimals.twoDigits.format(value: value)
+            return try NumberOfDecimals.twoDigits.format(value: value)
         }
     }
 }

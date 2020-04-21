@@ -3,6 +3,6 @@
 
 import Foundation
 
-struct Password: TextFieldTypeProtocol {
+struct Password {
     
 }

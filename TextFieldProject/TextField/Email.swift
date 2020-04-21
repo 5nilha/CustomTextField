@@ -3,6 +3,6 @@
 
 import Foundation
 
-struct Email: TextFieldTypeProtocol {
+struct Email {
     
 }

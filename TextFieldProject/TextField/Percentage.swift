@@ -3,8 +3,6 @@
 
 import Foundation
 
-struct Percentage: TextFieldTypeProtocol {
-    var decoratorCharacter: String {
-        return "%"
-    }
+struct Percentage {
+    
 }

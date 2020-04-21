@@ -11,10 +11,10 @@ import UIKit
 
 class CustomInputTextField: UITextField, UITextFieldDelegate {
     
-    public private (set) var type: TextFieldType!
-    private var decorator: CustomInputTextFieldDecorator!
+    public private (set) var type: CustomInputType!
+    private var decorator: CustomInputDecorator!
     
-    init(type: TextFieldType, frame: CGRect) {
+    init(type: CustomInputType, frame: CGRect) {
         super.init(frame: frame)
         self.setType(type: type)
         self.commomInit()
@@ -33,9 +33,9 @@ class CustomInputTextField: UITextField, UITextFieldDelegate {
         self.isSecureTextEntry = customKeyboardConfiguration.isSecretEntry
     }
     
-    func setType(type: TextFieldType) {
+    func setType(type: CustomInputType) {
         self.type = type
-        self.decorator = CustomInputTextFieldDecorator(type: self.type)
+        self.decorator = CustomInputDecorator(type: self.type)
         self.placeholder = try? self.decorator.decorate(character: "0")
     }
     

@@ -1,44 +1,13 @@
-//  Created by Fabio Quintanilha on 4/18/20.
+//  Created by Fabio Quintanilha on 4/20/20.
 //  Copyright © 2020 TaskHackers. All rights reserved.
+
 
 import Foundation
 
-enum TextFieldEntryError: Error {
-    case invalidInput
-    case unknown
+class CustomInputDecorator {
+    private var type: CustomInputType!
     
-    var description: String {
-        switch self {
-        case .invalidInput:
-            return "The input entered is invalid"
-        case .unknown:
-            return localizedDescription
-        }
-    }
-}
-
-protocol TextFieldTypeProtocol {
-    var decoratorCharacter: String { get }
-}
-
-extension TextFieldTypeProtocol {
-    var decoratorCharacter: String {
-        return ""
-    }
-}
-
-enum TextFieldType {
-    case currency(Currencies)
-    case percentage
-    case email
-    case password
-    case custom
-}
-
-class CustomInputTextFieldDecorator {
-    private var type: TextFieldType!
-    
-    init(type: TextFieldType) {
+    init(type: CustomInputType) {
         self.type = type
     }
     
@@ -61,21 +30,31 @@ class CustomInputTextFieldDecorator {
         }
     }
     
-    var maxValue: Int{
+    var maxValue: Int {
+        return type.maxValue
+    }
+    
+    var defaultPlaceholder: String {
         switch self.type {
-        case .currency:
-            return Currency.maxValue
+        case .currency(let currencyType):
+            var currency = Currency(type: currencyType)
+            return try! currency.decorate(digitChar: "0")
         case .percentage:
-            return 3
+            self.setPercentage()
+            return ""
         case .email:
             self.setEmail()
-            return 256
+            return ""
         case .password:
             self.setPassword()
-            return 100
+            return ""
         default:
-            return 256
+            return ""
         }
+    }
+    
+    var titlePlaceholder: String {
+        return type.titlePlaceholder
     }
     
     private func setPercentage() {
